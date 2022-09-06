@@ -96,7 +96,7 @@ public class ProjectsDialogScreen extends javax.swing.JDialog {
         jLabelTitle.setText("Projeto");
 
         jLabelTooBarSave.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelTooBarSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add.png"))); // NOI18N
+        jLabelTooBarSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/check.png"))); // NOI18N
         jLabelTooBarSave.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelTooBarSaveMouseClicked(evt);
@@ -108,7 +108,7 @@ public class ProjectsDialogScreen extends javax.swing.JDialog {
         jPanelToobarLayout.setHorizontalGroup(
             jPanelToobarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelToobarLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addComponent(jLabelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelTooBarSave, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -207,17 +207,23 @@ public class ProjectsDialogScreen extends javax.swing.JDialog {
         // TODO add your handling code here:
         
         try{
-            Project project = new Project();
-            project.setName(jTextFieldName.getText());
-            project.setDescription(jTextAreaDescription.getText());
-            controller.save(project);
-            JOptionPane.showMessageDialog(rootPane, "Projeto salvo com sucesso!");
+            if(!jTextFieldName.getText().equals("")){
+                Project project = new Project();
+                project.setName(jTextFieldName.getText());
+                project.setDescription(jTextAreaDescription.getText());
+                controller.save(project);
+                JOptionPane.showMessageDialog(rootPane, "Projeto salvo com sucesso!");
+                this.dispose();
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "Campo nome não foi preenchido ");
+            }
+            
         }catch(Exception e){
             
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
-        }finally{
-            this.dispose();
         }
+            
+       
     }//GEN-LAST:event_jLabelTooBarSaveMouseClicked
 
     /**

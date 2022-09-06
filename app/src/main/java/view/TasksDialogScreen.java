@@ -68,7 +68,7 @@ public class TasksDialogScreen extends javax.swing.JDialog {
         jLabelTooBarTitle.setText("Tarefa");
 
         jLabelTooBarSave.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelTooBarSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add.png"))); // NOI18N
+        jLabelTooBarSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/check.png"))); // NOI18N
         jLabelTooBarSave.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelTooBarSaveMouseClicked(evt);
@@ -206,24 +206,27 @@ public class TasksDialogScreen extends javax.swing.JDialog {
         
         try{
             
-            Task task = new Task();
-            //task.setId_project(project.getId());
-            task.setId_project(project.getId());
-            task.setName(jTextFieldName.getText());
-            task.setDescription(jTextAreaDescription.getText());
-            task.setNodes(jTextAreaNodes.getText());
-            task.setStatus(false);
-            SimpleDateFormat smt = new SimpleDateFormat("dd/MM/yyyy");
-            Date deadLine = null;
-            deadLine = smt.parse(jFormattedTextFieldDeadLine.getText());
+            if(!jTextFieldName.getText().isEmpty() || !jFormattedTextFieldDeadLine.getText().isEmpty()){
+                Task task = new Task();
+                //task.setId_project(project.getId());
+                task.setId_project(project.getId());
+                task.setName(jTextFieldName.getText());
+                task.setDescription(jTextAreaDescription.getText());
+                task.setNodes(jTextAreaNodes.getText());
+                task.setStatus(false);
+                SimpleDateFormat smt = new SimpleDateFormat("dd/MM/yyyy");
+                Date deadLine = null;
+                deadLine = smt.parse(jFormattedTextFieldDeadLine.getText());
             
-            task.setDeadLine(deadLine);
-            controller.save(task);
-            JOptionPane.showMessageDialog(rootPane, "Tafera salva com sucesso!");
+                task.setDeadLine(deadLine);
+                controller.save(task);
+                JOptionPane.showMessageDialog(rootPane, "Tafera salva com sucesso!");
+                this.dispose();
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "Existem campos obrigatorios a ser preenchido, verifique os campos nome e prazo");
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
-        }finally{
-            this.dispose();
         }
         
         

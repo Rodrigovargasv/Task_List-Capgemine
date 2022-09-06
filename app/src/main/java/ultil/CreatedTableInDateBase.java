@@ -19,8 +19,8 @@ public class CreatedTableInDateBase {
             + "id SERIAL PRIMARY KEY,"
             + "name char(55) NOT NULL,"
             + "description CHAR(55),"
-            + "created_task_list TIMESTAMP,"
-            + "update_task_list TIMESTAMP"
+            + "created_task_list TIMESTAMP NOT NULL,"
+            + "update_task_list TIMESTAMP NOT NULL"
             + ");"
       
             + "create table if not exists task("
@@ -30,9 +30,9 @@ public class CreatedTableInDateBase {
             + "description CHAR(55),"
             + "status BOOLEAN NOT NULL,"
             + "nodes TEXT,"
-            + "deadLine DATE,"
-            + "created_task_list TIMESTAMP,"
-            + "update_task_list TIMESTAMP"
+            + "deadLine DATE NOT NULL,"
+            + "created_task_list TIMESTAMP NOT NULL,"
+            + "update_task_list TIMESTAMP NOT NULL"
             + ");";
        
             
